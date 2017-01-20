@@ -14,6 +14,9 @@ dependencies {
     testCompile 'junit:junit:4.11'
 }
 
-manifest {
-    attributes 'Main-Class': 'message.HelloWorld'
+jar {
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    manifest {
+        attributes 'Main-Class': 'message.HelloWorld'
+    }
 }
